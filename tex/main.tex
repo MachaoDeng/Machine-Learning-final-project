@@ -14,10 +14,10 @@
 \maketitle
 
 \section{Abstract}
-The League of Legends Diamond Ranked Games dataset contains approximate 10000 observations and 40 variables. The dataset is available on kaggle \cite{kaggledata}. In this project,we applied Gaussian process, support vector machine, and neural network to predict the wining side of a game, and compare the behavior of each algorithm.
+The League of Legends Diamond Ranked Games dataset contains approximate 10000 observations and 40 variables. The dataset is available on kaggle \cite{kaggledata}. In this project, we applied Gaussian process, support vector machine, and neural network to predict the wining side of a game, and compare the behavior of each algorithm.
 
 \section{Introduction}
-League of Legends (LoL) is a multiplayer online battle arena video game developed and published by Riot Games. In League of Legends, players assume the role of a "champion" with unique abilities and battle against a team of other player or computer-controlled champions. The goal is usually to destroy the opposing team's "Nexus", a structure that lies at the heart of a base protected by defensive structures.
+League of Legends (LoL) is a multiplayer online battle arena video game developed and published by Riot Games\cite{LOLINTRO}. In League of Legends, players assume the role of a "champion" with unique abilities and battle against a team of other player or computer-controlled champions. The goal is usually to destroy the opposing team's "Nexus", a structure that lies at the heart of a base protected by defensive structures.
 
 The dataset contains the first ten minutes information of each game at "diamond" ranking, which is a very high competitive level in the LoL. The reason for only choosing diamond ranking games is because the players in this level are less likely to make faults, which proves the objectivity of data and decrease the negative affection brought by the players.
 
@@ -83,7 +83,7 @@ where $\epsilon_{i}$ is the penalty for misclassification. There also exists non
 The setting is the same as the previous one. The linear and Rbf kernel are both well-behaved. The accuracy on test set are 71.6\% and 72.5\% respectively.
 
 \subsection{Neural Network}
-We tried 8 different neural network structures to do the classification considering choices of activation functions, layer width, network depth and batch normalization. The structures of networks is shown in Table 1.
+We tried 8 different neural network structures to do the classification considering choices of activation functions, layer width, network depth and batch normalization. The structures of networks are shown in Table 1.
 
 \begin{table}[h!]
 \caption{Network structures}
@@ -116,7 +116,7 @@ The data we used is as same as in above methods. For all networks, we trained th
 \end{figure}
 
 
-Figure 1. shows how train and test accuracy vary with epoches. We can see that before 20 epoches, all networks converged to same accuray on both train and test set respectively. However, after 20 epoches, overfitting happens on all ReLu models and Sigmoid model 4. The result tells that a shallow network with sigmoid activation function is stable for this problem. Besides, We didn't observed significant difference before overfitting among these structures. Mean and std of test accuracy of 8 models among $10\sim 20$ epoches are shown in Table 2. The highest test accuracy we obtained is 73.4\% by SgModel2.
+Figure 1 shows how train and test accuracy vary with epoches. We can see that before 20 epoches, all networks converged to same accuray on both train and test set respectively. However, after 20 epoches, overfitting happens on all ReLu models and Sigmoid model 4. The result tells that a shallow network with sigmoid activation function is stable for this problem. Besides, we didn't observe significant difference before overfitting among these structures. Mean and std of test accuracy of 8 models among $10\sim 20$ epoches are shown in Table 2. The highest test accuracy we obtained is 73.4\% by SgModel2.
 
 \begin{table}[h!]
 \caption{Test accuracy}
@@ -134,11 +134,11 @@ sigmoid & 72.4\%(0.2\%) & 72.4\%(0.2\%) & 72.4\%(0.2\%) & 71.4\%(1.0\%) \\
 
 \section{Discussion and Conclusion}
 
-In this problem, we tried 3 different methods, Gaussian process, support vector machine and neural network to predict winner of a game set using statistics from first 10 minutes. Consequently, all three methods performs similarly on test set, achieving test accuracy at $71\%\sim73\%$. The result may suggest that statistics from first 10 minutes could only give $71\%\sim73\%$ of decisive information of a game. In other words, more information is necessary to achieve an accuracy above $73\%$.
+In this problem, we tried 3 different methods, Gaussian process, support vector machine and neural network to predict winner of a game set using statistics from first 10 minutes. Consequently, all three methods perform similarly on test set, achieving test accuracy at $71\%\sim73\%$. The result may suggest that statistics from first 10 minutes could only give $71\%\sim73\%$ of decisive information of a game. In other words, more information is necessary to achieve an accuracy above $73\%$.
 
 When we were training Gaussian process model, we found that choice of kernel function and parameter is significant. We tried RBF and other kernels such as Matern, RationalQuadratic, DotProduct and ExpSineSquared, and trained with different initial parameters. An inappropriate kernel could result in $50\%$ test accuracy which is the same as random prediction. The one we report in methods is the one performed best on test set. The phenomena tells that an appropriate space (corresponding to a kernel) to embed data is significant in training Gaussian process model.
 
-The results of neural network suggested that in comparison of deep network with relu activation function and applying batch normalization, a shallow network with sigmoid activation function works more stable in this problem. However, this stability could also be a result of slow convergence of network using sigmoid function. We didn't observed overfitting in 100 epoches in SgModels 1,2 and 3. However, the overfitting of SgModel 4, a sigmoid network with batch normalization which could accelerate training speed, may suggest that overfitting will happen in more epoches.
+The results of neural network suggest that in comparison with relu activation function and applying batch normalization, a shallow network with sigmoid activation function works more stable in this problem. However, this stability could also be a result of slow convergence of network using sigmoid function. We didn't observe overfitting in 100 epoches in SgModels 1,2 and 3. However, the overfitting of SgModel 4, a sigmoid network with batch normalization which could accelerate training speed, may suggest that overfitting will happen in more epoches.
 
 
 \bibliographystyle{plain}
